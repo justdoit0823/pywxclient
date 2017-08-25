@@ -2,6 +2,7 @@
 """WeChat Client module."""
 
 from urllib.parse import urlparse
+import webbrowser
 
 from pywxclient.core.api import WeChatAPI
 from pywxclient.core.exception import (
@@ -124,6 +125,12 @@ class SyncClient(Client):
         uuid = self._api_cls.get_qrcode_uuid(self.session)
         self._uuid = uuid
         return self._api_cls.get_qrcode_url(self.session, uuid)
+
+    def open_authorize_url(self):
+        """Open WeChat authorization url in system-default browser."""
+        authorize_url = self.get_authorize_url()
+        webbrowser.open(authorize_url)
+        return authorize_url    # allow for url passthrough
 
     def authorize(self):
         """Start wechat authorization."""
