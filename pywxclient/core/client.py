@@ -2,6 +2,7 @@
 """WeChat Client module."""
 
 from urllib.parse import urlparse
+import webbrowser
 
 from pywxclient.core.api import WeChatAPI
 from pywxclient.core.exception import (
@@ -126,7 +127,6 @@ class SyncClient(Client):
 
     def open_authorize_url(self):
         """Open WeChat authorization url in system-default browser."""
-        import webbrowser       # stdlib
         authorize_url = self.get_authorize_url()
         webbrowser.open(authorize_url)
         return authorize_url    # allow for url passthrough
