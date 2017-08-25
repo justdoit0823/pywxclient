@@ -124,6 +124,13 @@ class SyncClient(Client):
         self._uuid = uuid
         return self._api_cls.get_qrcode_url(self.session, uuid)
 
+    def open_authorize_url(self):
+        """Open WeChat authorization url in system-default browser."""
+        import webbrowser       # stdlib
+        authorize_url = self.get_authorize_url()
+        webbrowser.open(authorize_url)
+        return authorize_url    # allow for url passthrough
+
     def authorize(self):
         if self.session.authorized:
             return True
