@@ -66,11 +66,13 @@ def get_user(username):
 
 def sync_session(client, input_queue, login_event, exit_event):
     """同步微信会话。"""
-    authorize_url = client.get_authorize_url()
-
     client_log = getLogger('client')
-    client_log.info('Open this %s in web browser', authorize_url)
-    print('Open this %s in web browser' % authorize_url)
+    authorize_url = client.open_authorize_url()
+
+    authorization_prompt = 'Authorization url: {}'.format(authorize_url)
+    client_log.info(authorization_prompt)
+    print(authorization_prompt)
+
     while True:
         try:
             authorize_success = client.authorize()

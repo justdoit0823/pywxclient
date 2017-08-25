@@ -52,10 +52,11 @@ LOGGING = {
 
 def sync_session(client):
     """Sync wechat session。"""
-    authorize_url = client.get_authorize_url()
-
     client_log = getLogger('client')
-    client_log.info('Open this %s in web browser', authorize_url)
+    authorize_url = client.open_authorize_url()
+
+    client_log.info('Authorization url: {}'.format(authorize_url))
+
     while True:
         try:
             authorize_success = client.authorize()
