@@ -21,8 +21,7 @@ _logger = getLogger(__name__)
 
 
 def check_base_response(func):
-    """Decorator for checking whether response is ok."""
-
+    """Decorate for checking whether response is ok."""
     @functools.wraps(func)
     def wrapper(cls, *args, **kwargs):
 
@@ -108,18 +107,22 @@ class WeChatAPI:
 
     @classmethod
     def get_wx_endpoint(cls):
+        """Return wechat api endpoint."""
         return random.choice(cls.wx_endpoints)
 
     @classmethod
     def get_login_endpoint(cls, session):
+        """Return wechat login related api endpoint."""
         return cls.login_sub_host + session.wx_endpoint
 
     @classmethod
     def get_push_endpoint(cls, session):
+        """Return wechat push related api endpoint."""
         return cls.push_sub_host + session.wx_endpoint
 
     @classmethod
     def get_file_endpoint(cls, session):
+        """Return wechat file related api endpoint."""
         return cls.file_sub_host + session.wx_endpoint
 
     @classmethod
@@ -280,8 +283,8 @@ class WeChatAPI:
         webwx_data_ticket = session_cookies['webwx_data_ticket']
         params = {
             'sender': from_username, 'mediaid': media_id,
-            'filename': filename, 'fromuser': wxuin, 'pass_ticket': pass_ticket,
-            'webwx_data_ticket': webwx_data_ticket}
+            'filename': filename, 'fromuser': wxuin,
+            'pass_ticket': pass_ticket, 'webwx_data_ticket': webwx_data_ticket}
 
         res = session.get(
             api_path, params=params, timeout=cls.high_timeout, stream=stream)
@@ -331,7 +334,7 @@ class WeChatAPI:
 
     @classmethod
     def check_sync(cls, session):
-        """check sync status."""
+        """Check sync status."""
         api_path = cls.api_url_template.format(
             schema=cls.schema, endpoint=cls.get_push_endpoint(session),
             url=cls.sync_check_url)
@@ -595,8 +598,10 @@ class WeChatAPI:
     @classmethod
     @check_base_response
     def logout(cls, session):
+        """Logout wechat session."""
         api_path = cls.api_url_template.format(
-            schema=cls.schema, endpoint=session.wx_endpoint, url=cls.logout_url)
+            schema=cls.schema, endpoint=session.wx_endpoint,
+            url=cls.logout_url)
         wx_session_data = session.get_wx_session_data()
 
         wxsid = wx_session_data['wxsid']

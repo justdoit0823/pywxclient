@@ -19,8 +19,8 @@ LOGGING = {
     'formatters': {
         'verbose': {
             'format': (
-                '[%(levelname)1.1s %(asctime)s %(process)d %(module)s:%(lineno)d]'
-                ' %(message)s')
+                '[%(levelname)1.1s %(asctime)s %(process)d %(module)s:'
+                '%(lineno)d] %(message)s')
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -51,7 +51,7 @@ LOGGING = {
 
 
 def sync_session(client):
-    """Sync wechat session。"""
+    """Sync wechat session."""
     authorize_url = client.get_authorize_url()
 
     client_log = getLogger('client')
@@ -97,13 +97,13 @@ def sync_session(client):
 
 @click.group()
 def main():
-
+    """Command entry."""
     pass
 
 
 @main.command(name='run', help='start wechat client.')
 def run():
-
+    """Start wechat client."""
     config.dictConfig(LOGGING)
     client_log = getLogger('client')
 

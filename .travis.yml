@@ -1,17 +1,33 @@
 language: python
+dist: precise
 cache: pip
 python:
-    # - 2.7.13  # disable testing on Python 2
-    - 3.6
+  - 3.4
+  - 3.5
+  - 3.6
+
+os:
+  - linux
+
+env:
+  global:
+  - PYTHONUNBUFFERED=yes
+  matrix:
+  - MATRIX_TOXENV=unit
+matrix:
+  include:
+  - python: '3.5'
+    env: TOXENV=flake8
+  - python: '3.5'
+    env: TOXENV=pydocstyle
+before_install:
+  - if [[ -v MATRIX_TOXENV ]]; then export TOXENV=${TRAVIS_PYTHON_VERSION}-${MATRIX_TOXENV}; fi; env
+
 install:
-    - pip install flake8
-before_script:
-    # stop the build if there are Python syntax errors or undefined names
-    - time flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
-    # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-    - time flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  - travis_retry pip install -U tox | cat
+
 script:
-    - true  # <-- add other tests here...
+    - tox -vv
 notifications:
     on_success: change
     on_failure: change  # `always` will be the setting once code changes slow down

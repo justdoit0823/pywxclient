@@ -1,4 +1,6 @@
 
+"""File object module."""
+
 import io
 import os
 import requests
@@ -84,6 +86,7 @@ class LocalFile(File):
     """Local disk file."""
 
     def __init__(self, file_path):
+        """Initialize `LocalFile` instance."""
         with open(file_path, 'rb') as f:
             super(LocalFile, self).__init__(f.read())
 
@@ -97,6 +100,7 @@ class HTTPFile(File):
     """HTTP file."""
 
     def __init__(self, file_url):
+        """Initialize `HTTPFile` instance."""
         res = requests.get(file_url)
         super(HTTPFile, self).__init__(res.content)
         self.name = os.path.basename(file_url)

@@ -40,7 +40,8 @@ def test_dict2xml(data, e_xml):
 @pytest.mark.parametrize(
     'data, e_xml', (
         ((list2orderdict(('res',), (
-            list2orderdict(('code', 'data', '__attrs__'), (0, 'hello world', list2orderdict(('x', 'y'), ('h', 'z')))),))),
+            list2orderdict(('code', 'data', '__attrs__'), (
+                0, 'hello world', list2orderdict(('x', 'y'), ('h', 'z')))),))),
          '<res x="h" y="z"><code>0</code><data>hello world</data></res>'),
     ))
 def test_dict2xml_attr(data, e_xml):

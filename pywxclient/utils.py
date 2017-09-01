@@ -1,5 +1,5 @@
 
-""""""
+"""Utility module."""
 
 import functools
 import json
@@ -111,7 +111,7 @@ class MessageType(type):
         'local_msg_id', 'msg_id', '_msg_value')
 
     def __new__(cls, name, bases, namespace, **kwargs):
-
+        """Create a new class instance."""
         ns = dict(namespace)
         slots = ns.get('__slots__', ())
         slots_set = set(cls._base_slots + slots)
@@ -125,7 +125,7 @@ class MessageType(type):
 
 
 def json_dumps(json_data, compact=False, **kwargs):
-    """A json dumps wrapper."""
+    """Dump dict to json string."""
     if compact:
         return json.dumps(json_data, separators=(',', ':'), **kwargs)
 
@@ -215,7 +215,6 @@ def call_retry(retry_exceptions, retries=3):
     :param retry_exceptions: catch exception tuple.
     :param retries: retry times.
     """
-
     def func_decorator(func):
 
         @functools.wraps(func)

@@ -6,12 +6,13 @@ __all__ = ['WechatContact']
 
 
 class WechatContact:
+    """Wechat contact operation class."""
 
     group_name_prefix = '@@'
     mp_verify_flag = 8
 
     def __init__(self, contact_list):
-
+        """Initialize instance."""
         self._contacts = contact_list
         self._personal_contacts = []
         self._mp_contacts = []

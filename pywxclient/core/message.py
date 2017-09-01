@@ -173,7 +173,7 @@ class FileMessage(MediaMessagebase):
     def __init__(
             self, from_user, to_user, media_id, filename, filesize, fileext,
             local_msg_id=None, create_time=None, msg_id=None):
-
+        """Initialize `FileMessage` instance."""
         super(FileMessage, self).__init__(
             from_user, to_user, media_id, local_msg_id=local_msg_id,
             create_time=create_time, msg_id=msg_id)
@@ -182,7 +182,7 @@ class FileMessage(MediaMessagebase):
         self.fileext = fileext
 
     def get_body_value(self):
-
+        """Return message body."""
         return super(MediaMessagebase, self).get_body_value()
 
     def get_message_content(self):
@@ -245,11 +245,13 @@ class ExtendMessage(MessageBase):
 
 
 class LocationShareMessage(MessageBase):
+    """Location share message."""
 
     msg_type = 17
 
     @classmethod
     def from_value(cls, msg_value):
+        """Construct message instance."""
         msg_id = msg_value['MsgId']
         from_username = msg_value['FromUserName']
         to_username = msg_value['ToUserName']
@@ -266,26 +268,31 @@ class LocationShareMessage(MessageBase):
 
 
 class BusinessCardMessage(MessageBase):
+    """Business card message."""
 
     msg_type = 42
 
 
 class TransferMessage(MessageBase):
+    """Transfer message."""
 
     msg_type = 2000
 
 
 class ChatLogMessage(MessageBase):
+    """Chatlog message."""
 
     msg_type = 0
 
 
 class ShareLinkMessage(MessageBase):
+    """Link share message."""
 
     msg_type = 5
 
 
 class WeAppMessage(MessageBase):
+    """WeApp message."""
 
     msg_type = 33
 

@@ -21,8 +21,8 @@ LOGGING = {
     'formatters': {
         'verbose': {
             'format': (
-                '[%(levelname)1.1s %(asctime)s %(process)d %(module)s:%(lineno)d]'
-                ' %(message)s')
+                '[%(levelname)1.1s %(asctime)s %(process)d %(module)s:'
+                '%(lineno)d] %(message)s')
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -61,11 +61,12 @@ def build_contact(client):
 
 
 def get_user(username):
+    """Return user info identified by username."""
     return _client_contacts.get(username, {})
 
 
 def sync_session(client, input_queue, login_event, exit_event):
-    """同步微信会话。"""
+    """同步微信会话."""
     authorize_url = client.get_authorize_url()
 
     client_log = getLogger('client')
@@ -139,7 +140,7 @@ def show_input_message(client, input_queue, msg_queue, exit_event):
 
 
 def reply_message(client, msg_queue, login_event, exit_event):
-    """reply message to wechat。"""
+    """Reply message to wechat."""
     client_log = getLogger('client')
 
     login_event.wait()
@@ -164,13 +165,13 @@ def reply_message(client, msg_queue, login_event, exit_event):
 
 @click.group()
 def main():
-
+    """Command entry."""
     pass
 
 
 @main.command(name='run', help='start wechat client.')
 def run(**kwargs):
-
+    """Start wechat client."""
     input_queue = queue.Queue()
     msg_queue = queue.Queue()
     login_event = threading.Event()
@@ -182,9 +183,11 @@ def run(**kwargs):
     session = Session()
     client = SyncClient(session)
     session_thread = threading.Thread(
-        target=sync_session, args=(client, input_queue, login_event, exit_event))
+        target=sync_session,
+        args=(client, input_queue, login_event, exit_event))
     reply_thread = threading.Thread(
-        target=reply_message, args=(client, msg_queue, login_event, exit_event))
+        target=reply_message,
+        args=(client, msg_queue, login_event, exit_event))
 
     session_thread.start()
     reply_thread.start()

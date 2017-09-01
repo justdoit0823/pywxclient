@@ -68,7 +68,8 @@ class TestMessage:
             {'MsgId': '121231', 'FromUserName': '@aaaa', 'ToUserName': '@bbbb',
              'Content': '', 'MediaId': '@adwwefw', 'CreateTime': '1423423234'},
             {'MsgId': '1223121', 'FromUserName': '@ccc', 'ToUserName': '@ddd',
-             'Content': '', 'MediaId': '@afwfwfw', 'CreateTime': 1423423234123})
+             'Content': '', 'MediaId': '@afwfwfw',
+             'CreateTime': 1423423234123})
     )
     def test_parse_image_message(self, msg_value):
         msg = ImageMessage.from_value(msg_value)

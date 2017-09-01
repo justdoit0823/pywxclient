@@ -137,12 +137,12 @@ class RequestsSession(requests.Session):
 
 
 class Session:
-    """WeChat client session manage."""
+    """WeChat client session class."""
 
     def __init__(
             self, request_session_cls=RequestsSession, session_data=None,
             endpoint=None, **kwargs):
-
+        """Initialize wechat session."""
         self._wx_session = None
         self._wx_endpoint = endpoint
         self._authorized = False
@@ -187,6 +187,7 @@ class Session:
 
     @property
     def authorized(self):
+        """Indicate whether session has authorized."""
         return self._authorized
 
     @property
@@ -203,13 +204,15 @@ class Session:
         self._wx_endpoint = endpoint
 
     def initialize_wx_session(self, wx_session_data):
-        """"""
+        """Initialize `WxSession` instance."""
         self._wx_session = WxSession.from_dict(wx_session_data)
 
     def get_wx_session_data(self):
+        """Return `WxSession` related data."""
         return self._wx_session.to_dict() if self._wx_session else {}
 
     def get_session_cookies(self):
+        """Return session cookies."""
         return self._req_session.cookies
 
     def dump(self):
@@ -221,5 +224,6 @@ class Session:
             'wx_endpoint': self._wx_endpoint}
 
     def close(self):
+        """Close session."""
         if self._req_session:
             self._req_session.close()

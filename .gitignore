@@ -18,3 +18,5 @@ pywxclient.egg-info/*
 .projectile
 
 *.log
+
+.tox/*

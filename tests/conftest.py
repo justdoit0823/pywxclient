@@ -1,1 +1,2 @@
 
+"""Test configuration module."""

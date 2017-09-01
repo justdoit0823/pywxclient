@@ -1,4 +1,6 @@
 
+"""Contribution package."""
+
 from .file import LocalFile, HTTPFile
 
 

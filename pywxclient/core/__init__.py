@@ -1,4 +1,6 @@
 
+"""pywxclient core functions package."""
+
 from .api import WeChatAPI
 from .client import Client, SyncClient
 from .message import (

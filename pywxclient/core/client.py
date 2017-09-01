@@ -62,9 +62,10 @@ class Client:
         raise NotImplementedError
 
     def get_batch_contact(self, user_list):
-        """Batch get WeChat contacts.
+        """Batch getting WeChat contacts.
 
-        :param user_list: a list contains dict like {'UserName': 'username', 'EncryChatRoomId': ''}.
+        :param user_list: a list contains dict like {
+            'UserName': 'username', 'EncryChatRoomId': ''}.
         """
         raise NotImplementedError
 
@@ -125,6 +126,7 @@ class SyncClient(Client):
         return self._api_cls.get_qrcode_url(self.session, uuid)
 
     def authorize(self):
+        """Start wechat authorization."""
         if self.session.authorized:
             return True
 
@@ -151,6 +153,7 @@ class SyncClient(Client):
         return True
 
     def login(self):
+        """Login wechat session."""
         if self.session.is_active():
             # already login
             return
@@ -164,24 +167,36 @@ class SyncClient(Client):
         self.session.sync(init_res['SyncKey'])
 
     def get_contact(self):
+        """Get wechat contact."""
         contact_res = self._api_cls.get_contact_list(self.session)
         return contact_res['MemberList']
 
     def get_batch_contact(self, user_list):
+        """Batch getting contact."""
         contact_res = self._api_cls.mget_contact_list(self.session, user_list)
         return contact_res['ContactList']
 
     def get_icon(self, icon_url):
+        """Get user icon.
+
+        :param icon_url: icon url.
+        """
         return self._api_cls.get_icon(self.session, icon_url)
 
     def get_head_img(self, headimg_url):
+        """Get user head image.
+
+        :param headimg_url: headimg url.
+        """
         return self._api_cls.get_head_img(self.session, headimg_url)
 
     def sync_check(self):
+        """Check session status."""
         check_res = self._api_cls.check_sync(self.session)
         return int(check_res['selector'])
 
     def sync_message(self):
+        """Sync wechat message."""
         message = self._api_cls.do_sync(self.session)
 
         sync_key = message['SyncKey']
@@ -224,7 +239,9 @@ class SyncClient(Client):
         raise UnsupportedMessage
 
     def set_user_remark(self, username, remark):
+        """Set user wechat remark."""
         self._api_cls.set_user_remark(self.session, username, remark)
 
     def logout(self):
+        """Logout wechat session."""
         self._api_cls.logout(self.session)

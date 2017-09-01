@@ -1,0 +1,4 @@
+
+flake8>=2.6.0
+flakeplus>=1.1.0
+pydocstyle>=2.0.0
