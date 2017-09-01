@@ -2,6 +2,10 @@
 pywxclient
 ==========
 
+.. image:: https://travis-ci.org/justdoit0823/pywxclient.svg?branch=master
+    :target: https://travis-ci.org/justdoit0823/pywxclient
+
+
 A simple WeChat client is based on Web HTTP api, supporting authorization, login, fetching message and sending message.
 
 Here we go:
