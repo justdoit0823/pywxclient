@@ -16,9 +16,9 @@ env:
   - MATRIX_TOXENV=unit
 matrix:
   include:
-  - python: '3.5'
+  - python: '3.6'
     env: TOXENV=flake8
-  - python: '3.5'
+  - python: '3.6'
     env: TOXENV=pydocstyle
 before_install:
   - if [[ -v MATRIX_TOXENV ]]; then export TOXENV=${TRAVIS_PYTHON_VERSION}-${MATRIX_TOXENV}; fi; env
