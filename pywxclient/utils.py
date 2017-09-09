@@ -113,12 +113,12 @@ class MessageType(type):
     def __new__(cls, name, bases, namespace, **kwargs):
         """Create a new class instance."""
         ns = dict(namespace)
-        slots = ns.get('__slots__', ())
-        slots_set = set(cls._base_slots + slots)
-        for base in bases:
-            slots_set.update(getattr(base, '__slots__', ()))
+        slots = ns.get('__slots__') or ()
+        if not bases or bases[0] == object:
+            # Only add default names to base class's slots
+            slots = tuple(set(cls._base_slots + tuple(slots)))
 
-        ns['__slots__'] = tuple(slots_set)
+        ns['__slots__'] = tuple(slots)
         new_type = type.__new__(cls, name, bases, ns)
 
         return new_type

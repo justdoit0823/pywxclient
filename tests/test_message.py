@@ -24,6 +24,9 @@ class TestMessage:
         assert msg_value['Content'] == message
         assert msg_value['Type'] == msg.msg_type
 
+        with pytest.raises(AttributeError):
+            msg.new_attr = 'attribute value'
+
     @pytest.mark.parametrize(
         'msg_value', (
             {'MsgId': '12123', 'FromUserName': '@aaaa', 'ToUserName': '@bbbb',
@@ -60,6 +63,9 @@ class TestMessage:
         assert msg_value['ToUserName'] == to_user
         assert msg_value['MediaId'] == media_id
         assert msg_value['Type'] == msg.msg_type
+
+        with pytest.raises(AttributeError):
+            msg.new_attr = 'attribute value'
 
     @pytest.mark.parametrize(
         'msg_value', (
