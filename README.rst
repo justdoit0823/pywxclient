@@ -90,4 +90,4 @@ Or you can write a more complex wechat client with this `pywxclient` package.
 How to Contribute
 =================
 
-Open an issue, join a discussion or make a pull request.
+Open an `issue <https://github.com/justdoit0823/pywxclient/issues>`_, join a discussion or make a pull request.
