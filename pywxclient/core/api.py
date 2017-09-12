@@ -189,7 +189,8 @@ class WeChatAPI:
         data = {'BaseRequest': cls.get_base_request(wx_session_data)}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.high_timeout)
 
         return decode_json_response(res)
@@ -210,7 +211,8 @@ class WeChatAPI:
         data['ClientMsgId'] = cls.get_client_msg_id()
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             timeout=cls.middle_timeout)
 
         return decode_json_response(res)
@@ -327,7 +329,8 @@ class WeChatAPI:
             'List': user_list}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.middle_timeout)
 
         return decode_json_response(res)
@@ -391,7 +394,8 @@ class WeChatAPI:
                 'id': 'WU_FILE_0', 'name': filename, 'type': data_media_type,
                 'lastModifiedDate': file_obj.last_mtime, 'size': data_len,
                 'mediatype': file_obj.short_type(),
-                'uploadmediarequest': json_dumps(upload_req, compact=True),
+                'uploadmediarequest': json_dumps(
+                    upload_req, compact=True, ensure_ascii=False).encode(),
                 'webwx_data_ticket': session_cookies['webwx_data_ticket'],
                 'pass_ticket': pass_ticket}
             if chunk_num > 1:
@@ -444,7 +448,8 @@ class WeChatAPI:
         data = {'BaseRequest': base_request, 'SyncKey': sync_key}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.middle_timeout)
 
         return decode_json_response(res)
@@ -490,7 +495,8 @@ class WeChatAPI:
         data = {'BaseRequest': base_request, 'Scene': 0, 'Msg': msg_value}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.low_timeout)
 
         return decode_json_response(res)
@@ -514,7 +520,8 @@ class WeChatAPI:
         data = {'BaseRequest': base_request, 'Scene': 0, 'Msg': msg_value}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.low_timeout)
 
         return decode_json_response(res)
@@ -537,7 +544,8 @@ class WeChatAPI:
         data = {'BaseRequest': base_request, 'Scene': 0, 'Msg': msg_value}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.low_timeout)
 
         return decode_json_response(res)
@@ -566,7 +574,8 @@ class WeChatAPI:
         data = {'BaseRequest': base_request, 'Scene': 0, 'Msg': msg_value}
 
         res = session.post(
-            api_path, params=params, data=json_dumps(data, compact=True),
+            api_path, params=params, data=json_dumps(
+                data, compact=True, ensure_ascii=False).encode(),
             headers=headers, timeout=cls.low_timeout)
 
         return decode_json_response(res)
