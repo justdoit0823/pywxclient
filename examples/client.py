@@ -84,9 +84,11 @@ def sync_session(client):
                     try:
                         msg_obj = parse_message(msg)
                     except UnsupportedMessage:
+                        client_log.info('unsupported message %s', msg)
                         continue
                     else:
-                        client_log.info('receive message %s', msg_obj.message)
+                        client_log.info(
+                            'receive message %s, %s', msg_obj, msg_obj.message)
 
                 client.flush_sync_key()
         except (RequestError, APIResponseError):

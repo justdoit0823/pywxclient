@@ -99,6 +99,7 @@ def sync_session(client, input_queue, login_event, exit_event):
                     try:
                         msg_obj = parse_message(msg)
                     except UnsupportedMessage:
+                        client_log.info('unsupported message %s', msg)
                         continue
                     else:
                         if msg_obj.message:
