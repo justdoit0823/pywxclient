@@ -1,14 +1,14 @@
 
 """pywxclient core functions package."""
 
-from .api import WeChatAPI
-from .client import Client, SyncClient
-from .message import (
+from pywxclient.core.api import WeChatAPI
+from pywxclient.core.client import Client, SyncClient
+from pywxclient.core.message import (
     TextMessage, ImageMessage, GifImageMessage, VoiceMessage, FileMessage,
     VideoMessage, ExtendMessage, LocationShareMessage, BusinessCardMessage,
     TransferMessage, ChatLogMessage, ShareLinkMessage, WeAppMessage,
     NoticeMessage, RevokeMessage, StatusNotifyMessage, parse_message)
-from .session import Session
+from pywxclient.core.session import Session
 
 
 __all__ = [
