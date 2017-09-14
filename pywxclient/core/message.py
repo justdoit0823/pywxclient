@@ -10,9 +10,10 @@ from pywxclient.utils import MessageType, dict2xml, xml2dict
 
 __all__ = [
     'TextMessage', 'ImageMessage', 'GifImageMessage', 'VoiceMessage',
-    'FileMessage', 'ExtendMessage', 'VideoMessage', 'LocationShareMessage',
-    'BusinessCardMessage', 'TransferMessage', 'ShareLinkMessage',
-    'RevokeMessage', 'ChatLogMessage', 'WeAppMessage', 'parse_message']
+    'FileMessage', 'VideoMessage', 'ExtendMessage', 'LocationShareMessage',
+    'BusinessCardMessage', 'TransferMessage', 'ChatLogMessage',
+    'ShareLinkMessage', 'WeAppMessage', 'NoticeMessage', 'RevokeMessage',
+    'StatusNotifyMessage', 'parse_message']
 
 
 _specified_appmsg_appid = 'wxeb7ec651dd0aefa9'
