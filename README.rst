@@ -39,19 +39,17 @@ Features
 
   * WeChat login
 
+  * Fetching WeChat contacts
+
   * Fetching all possible messages
 
   * Send text message
 
   * Send image message
 
-  * Send voice message
-
-  * Send gif message
+  * Send video message
 
   * Send file message
-
-  * Fetching WeChat contacts
 
   * Dump client as a dict
 
