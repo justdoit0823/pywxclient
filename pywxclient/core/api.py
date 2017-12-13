@@ -422,9 +422,11 @@ class WeChatAPI:
                     raise APIResponseError
             else:
                 # The last uploaded chunk response
-                if data['BaseResponse']['Ret'] != 0 or data[
-                        'StartPos'] != data_len:
+                if data['BaseResponse']['Ret'] != 0 or not data['MediaId']:
                     raise APIResponseError
+
+                if data['StartPos'] != data_len:
+                    _logger.warning('inconsistent start position value.')
 
                 return data['MediaId']
 
