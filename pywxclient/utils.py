@@ -51,7 +51,7 @@ class ParseWxRes:
 
         try:
             exec(js_code, None)
-        except:
+        except Exception:
             raise ParseException
         else:
             return window

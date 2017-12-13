@@ -112,7 +112,7 @@ def sync_session(client, input_queue, login_event, exit_event):
             client_log.error('wechat session is expired....')
             exit_event.set()
             break
-        except:
+        except Exception:
             continue
 
 
