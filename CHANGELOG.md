@@ -7,6 +7,8 @@ Changes
 
   * Fix insistent return start position when uploading video file.
 
+  * Add parsing filename in Content-Disposition header field.
+
 
 
 0.1.0 (2017-09-17)
