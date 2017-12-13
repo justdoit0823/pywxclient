@@ -5,7 +5,7 @@ import sys
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
-version = '0.1.0b1'
+version = '0.1.0'
 
 
 class PyTest(TestCommand):
@@ -34,7 +34,7 @@ setup(name='pywxclient',
       long_description=open(
           os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
       classifiers=(
-          'Development Status :: 3 - Alpha',
+          'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Apache Software License',
           'Programming Language :: Python :: 3',
