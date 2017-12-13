@@ -103,6 +103,23 @@ class HTTPFile(File):
         """Initialize `HTTPFile` instance."""
         res = requests.get(file_url)
         super(HTTPFile, self).__init__(res.content)
+
         self.name = os.path.basename(file_url)
+
+        # Try Content-Disposition header field
+        headers = res.headers
+        if 'Content-Disposition' in headers:
+            content_disposition = headers['Content-Disposition']
+            if content_disposition:
+                fields = content_disposition.split('filename=')
+                if len(fields) > 1:
+                    filename = fields[1].strip('"')
+                    try:
+                        filename = filename.encode('latin1').decode()
+                    except UnicodeEncodeError:
+                        pass
+
+                    self.name = filename
+
         self._type = res.headers['Content-Type'].split('/')[1]
         self._last_mtime = time.time()
