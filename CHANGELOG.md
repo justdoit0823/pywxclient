@@ -2,7 +2,7 @@
 Changes
 =======
 
-0.1.0 (2017-12-13)
+0.1.1 (2017-12-13)
 -------------------
 
   * Fix insistent return start position when uploading video file.

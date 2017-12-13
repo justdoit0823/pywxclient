@@ -80,9 +80,15 @@ or installing from git
 Examples
 ========
 
-In the examples directory, there are two simple python wechat client program as tutorials.
+In the `examples <examples>`_ directory, there are two simple python wechat client program as tutorials.
 
 Or you can write a more complex wechat client with this `pywxclient` package.
+
+
+CHANGELOG
+==========
+
+Go to `CHANGELOG.md <CHANGELOG.md>`_.
 
 
 How to Contribute
