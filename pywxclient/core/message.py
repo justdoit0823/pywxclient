@@ -84,11 +84,11 @@ class MessageBase(metaclass=MessageType):
         msg_id = msg_value['MsgId']
         from_username = msg_value['FromUserName']
         to_username = msg_value['ToUserName']
-        message = html.unescape(msg_value['Content'])
+        content = html.unescape(msg_value['Content'])
         create_time = int(msg_value['CreateTime'])
         local_msg_id = str(create_time * 1000000)
         msg_obj = cls(
-            from_username, to_username, message, local_msg_id=local_msg_id,
+            from_username, to_username, content, local_msg_id=local_msg_id,
             create_time=create_time)
         msg_obj.ack(local_msg_id, msg_id)
         return msg_obj
