@@ -173,11 +173,11 @@ class FileMessage(MediaMessagebase):
 
     def __init__(
             self, from_user, to_user, media_id, filename, filesize, fileext,
-            local_msg_id=None, create_time=None, msg_id=None):
+            message='', local_msg_id=None, create_time=None, msg_id=None):
         """Initialize `FileMessage` instance."""
         super(FileMessage, self).__init__(
-            from_user, to_user, media_id, local_msg_id=local_msg_id,
-            create_time=create_time, msg_id=msg_id)
+            from_user, to_user, media_id, message=message,
+            local_msg_id=local_msg_id, create_time=create_time, msg_id=msg_id)
         self.filename = filename
         self.filesize = filesize
         self.fileext = fileext
@@ -209,17 +209,18 @@ class FileMessage(MediaMessagebase):
         from_username = msg_value['FromUserName']
         to_username = msg_value['ToUserName']
         media_id = msg_value['MediaId']
+        content = html.unescape(msg_value['Content'])
         create_time = msg_value['CreateTime']
         local_msg_id = str(create_time * 1000000)
         if msg_type == ExtendMessage.msg_type:
-            msg_data = xml2dict(html.unescape(msg_value['Content']))['msg']
+            msg_data = xml2dict(content)['msg']
             appmsg_data = msg_data['appmsg']
             appattach = appmsg_data['appattach']
             filename = appmsg_data['title']
             filesize = appattach['totallen']
             fileext = appattach['fileext']
         else:
-            appmsg_data = xml2dict(html.unescape(msg_value['Content']))
+            appmsg_data = xml2dict(content)
             appattach = appmsg_data['appattach']
             filename = appattach['filename']
             filesize = int(appattach['filesize'])
@@ -228,7 +229,8 @@ class FileMessage(MediaMessagebase):
 
         msg_obj = cls(
             from_username, to_username, media_id, filename, filesize, fileext,
-            create_time=create_time, local_msg_id=local_msg_id)
+            message=content, local_msg_id=local_msg_id,
+            create_time=create_time)
         msg_obj.ack(local_msg_id, msg_id)
         return msg_obj
 
