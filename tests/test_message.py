@@ -117,7 +117,7 @@ class TestMessage:
             msg.new_attr = 'attribute value'
 
     @pytest.mark.parametrize(
-        'msg_value', (
+        'msg_value, name, size, ext', ((
             {'MsgId': '1212', 'FromUserName': '@aaaa', 'ToUserName': '@bbbb',
              'MsgType': 49, 'AppMsgType': 6,
              'Content': (
@@ -125,15 +125,17 @@ class TestMessage:
                  'title>haaha.pdf</title><appattach><br/><totallen>14235648</'
                  'totallen><br/>\t\t\t<attachid>@adwqqw12</attachid><fileext>'
                  'pdf</fileext></appattach></appmsg></msg>'),
-             'MediaId': '@adwwewewer', 'CreateTime': 1423423234},
-            {'MsgId': '121234', 'FromUserName': '@aaaa', 'ToUserName': '@bbbb',
-             'MsgType': 6, 'Content': (
-                 '<appattach><br/><filename>呵呵.pdf</filename><filesize>'
-                 '14235648</filesize><br/>\t\t\t<attachid>@adwqqw12</attachid>'
-                 '<fileext>pdf</fileext></appattach>'),
-             'MediaId': '@adwwewewerssfwf', 'CreateTime': 142342322422344})
+             'MediaId': '@adwwewewer', 'CreateTime': 1423423234}, 'haaha.pdf',
+            14235648, 'pdf'), (
+                {'MsgId': '121234', 'FromUserName': '@aaaa',
+                 'ToUserName': '@bbbb', 'MsgType': 6, 'Content': (
+                     '<appattach><br/><filename>呵呵.png</filename><filesize>'
+                     '142356</filesize><br/>\t\t\t<attachid>@adwqqw12'
+                     '</attachid><fileext>png</fileext></appattach>'),
+                 'MediaId': '@adwwewewerssfwf', 'CreateTime': 142342322422344},
+                '呵呵.png', 142356, 'png'))
     )
-    def test_parse_file_message(self, msg_value):
+    def test_parse_file_message(self, msg_value, name, size, ext):
         msg = FileMessage.from_value(msg_value)
 
         assert msg.msg_id == msg_value['MsgId']
@@ -141,5 +143,8 @@ class TestMessage:
         assert msg.to_user == msg_value['ToUserName']
         assert msg.message == msg_value['Content']
         assert msg.media_id == msg_value['MediaId']
+        assert msg.filename == name
+        assert msg.filesize == size
+        assert msg.fileext == ext
         assert msg.create_time == int(msg_value['CreateTime'])
         assert msg.check_ack_status()

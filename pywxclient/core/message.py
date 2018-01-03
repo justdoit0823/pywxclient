@@ -217,7 +217,7 @@ class FileMessage(MediaMessagebase):
             appmsg_data = msg_data['appmsg']
             appattach = appmsg_data['appattach']
             filename = appmsg_data['title']
-            filesize = appattach['totallen']
+            filesize = int(appattach['totallen'])
             fileext = appattach['fileext']
         else:
             appmsg_data = xml2dict(content)
