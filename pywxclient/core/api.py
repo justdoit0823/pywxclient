@@ -10,7 +10,7 @@ import time
 from logging import getLogger
 
 from pywxclient.core.exception import (
-    APIResponseError, SessionExpiredError, LoginError)
+    APIResponseError, SessionExpiredError, LoginError, RequestError)
 from pywxclient.utils import ParseWxRes, json_dumps
 
 
@@ -43,6 +43,9 @@ def check_base_response(func):
 
 def decode_json_response(res):
     """Decode wechat latin1 encoded json response."""
+    if res.status_code != 200:
+        raise RequestError
+
     return json.loads(res.text.encode('latin1').decode())
 
 
