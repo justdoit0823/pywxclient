@@ -63,7 +63,7 @@ def sync_session(client):
         except WaitScanQRCode:
             continue
         except AuthorizeTimeout:
-            client_log.warn('Waiting for authorization timeout.')
+            client_log.warning('Waiting for authorization timeout.')
             sys.exit(0)
 
         if authorize_success:
@@ -94,7 +94,7 @@ def sync_session(client):
         except (RequestError, APIResponseError):
             client_log.info('api error.')
         except SessionExpiredError:
-            client_log.warn('wechat session is expired....')
+            client_log.warning('wechat session is expired....')
             break
 
 
