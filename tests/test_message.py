@@ -17,6 +17,7 @@ class TestMessage:
         assert msg.from_user == from_user
         assert msg.to_user == to_user
         assert msg.message == message
+        assert isinstance(msg.create_time, int)
 
         msg_value = msg.to_value()
         assert msg_value['FromUserName'] == from_user
@@ -57,6 +58,7 @@ class TestMessage:
         assert msg.to_user == to_user
         assert msg.message == ''
         assert msg.media_id == media_id
+        assert isinstance(msg.create_time, int)
 
         msg_value = msg.to_value()
         assert msg_value['FromUserName'] == from_user
@@ -106,6 +108,7 @@ class TestMessage:
         assert msg.filename == name
         assert msg.filesize == size
         assert msg.fileext == ext
+        assert isinstance(msg.create_time, int)
 
         msg_value = msg.to_value()
         assert msg_value['FromUserName'] == from_user
