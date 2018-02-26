@@ -2,6 +2,16 @@
 Changes
 =======
 
+0.1.2 (2018-02-02)
+-------------------
+
+  * Add WeChat API http response code validation.
+
+  * Enhance FileMessage and unify message's attribute type.
+
+  * Unify code denomination.
+
+
 0.1.1 (2017-12-13)
 -------------------
 

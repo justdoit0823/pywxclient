@@ -32,7 +32,8 @@ class MessageBase(metaclass=MessageType):
         self.from_user = from_user
         self.to_user = to_user
         self.message = message
-        self.create_time = int(create_time) if create_time else time.time()
+        self.create_time = int(create_time) if create_time else int(
+            time.time())
         self.local_msg_id = local_msg_id or self.get_local_msg_id()
         self.msg_id = msg_id
         self._msg_value = None
@@ -210,7 +211,7 @@ class FileMessage(MediaMessagebase):
         to_username = msg_value['ToUserName']
         media_id = msg_value['MediaId']
         content = html.unescape(msg_value['Content'])
-        create_time = msg_value['CreateTime']
+        create_time = int(msg_value['CreateTime'])
         local_msg_id = str(create_time * 1000000)
         if msg_type == ExtendMessage.msg_type:
             msg_data = xml2dict(content)['msg']
