@@ -94,9 +94,9 @@ Now, the guys can build documentation as html files on local machines.
 
    $ git clone https://github.com/justdoit0823/pywxclient
 
-   $ cd pywxclient/docs && make html
+   $ cd pywxclient
 
-   $ open _build/html/index.html
+   $ tox -e sphinx-doc
 
 
 CHANGELOG
