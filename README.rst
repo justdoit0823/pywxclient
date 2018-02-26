@@ -85,6 +85,20 @@ In the `examples <examples>`_ directory, there are two simple python wechat clie
 Or you can write a more complex wechat client with this `pywxclient` package.
 
 
+Documentation
+===============
+
+Now, the guys can build documentation as html files on local machines.
+
+.. code-block: bash
+
+   $ git clone https://github.com/justdoit0823/pywxclient
+
+   $ cd pywxclient/docs && make html
+
+   $ open _build/html/index.html
+
+
 CHANGELOG
 ==========
 

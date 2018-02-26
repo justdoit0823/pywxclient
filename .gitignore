@@ -20,3 +20,5 @@ pywxclient.egg-info/*
 *.log
 
 .tox/*
+
+*_build
