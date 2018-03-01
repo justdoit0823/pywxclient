@@ -88,7 +88,7 @@ Or you can write a more complex wechat client with this `pywxclient` package.
 Documentation
 ===============
 
-Now, the guys can build documentation as html files on local machines.
+Now, the guys can visit website `pywxclient <http://pywxclient.readthedocs.io/en/latest/index.html>`_  or build documentation as html files on local machines.
 
 .. code-block: bash
 
