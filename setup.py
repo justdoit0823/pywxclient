@@ -53,7 +53,7 @@ setup(name='pywxclient',
       include_package_data=True,
       zip_safe=True,
       cmdclass={'test': PyTest},
-      tests_require=('pytest==3.0.7',),
+      tests_require=('pytest==9.0.3',),
       install_requires=[
           # -*- Extra requirements: -*-
           'requests>=2.10.0',
